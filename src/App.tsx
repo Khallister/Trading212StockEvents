@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { Header } from "./components/Header";
 
 function App() {
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "production" && !document.getElementById('tailwind-dev')) {
+      const link = document.createElement("link");
+      link.setAttribute(
+        "href",
+        "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      );
+      link.setAttribute("rel", "stylesheet");
+      link.setAttribute('id', 'tailwind-dev')
+      document.head.appendChild(link);
+    }
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header className="h-24">
+        <span>Trading 212 to Stock Events parser</span>
+      </Header>
+      <main></main>
+      <footer></footer>
+    </>
   );
 }
 
